@@ -1,0 +1,38 @@
+
+
+FPGA_REGADDR=0 allows CPU to write to an internal register (8 bit) that is the address
+    of the internal register to read when FPGA_REGADDR=1. This allows a single bit to be used instead
+    of 8 bits for address info on a read/write. REGADDR will increment on each read/write so
+    successive reads/writes will write to the next register address, and REGADDR will not need to be
+    updated.
+FPGA data bus -8
+FPGA_RW - read or write to data bus
+FPGA internal registers
+    command: offset 0 (len 4, only LSB = command, others reserved (0), could be used to identify motherboard
+       memory, or vram memory, etc.  Different busses.
+    data: offset 4 len 4 (to support 32 bit processors)
+    addr: offset 8 len 4 (to support 32 bit addressing)
+    mode: offset 12 len 4 (perhaps video mode, CPU type, etc)
+    
+
+FPGA command register - 8
+FPGA commands
+load a23
+load a16
+load a8
+load a0
+
+load D23
+load D16
+load D8
+load D0
+
+read d32
+read d16
+read d8
+read d0
+
+readmem
+writemem
+
+
